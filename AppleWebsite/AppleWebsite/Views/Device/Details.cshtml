@@ -1,0 +1,50 @@
+﻿@model AppleWebsite.Models.Device
+
+@{
+	ViewBag.Title = "Detail";
+	string[] storage = new string[0];
+	if (string.IsNullOrEmpty(Model.storage))
+	{
+
+	}
+	else
+	{
+		storage = Model.storage.Split(';').ToArray();
+	}
+}
+
+<div class="col container">
+	<div class="row">
+		<div class="col-xl-5 m-5">
+			<img class="img-fluid" src="~/DeviceAppleImage/@Model.Category.name_cate/@Model.img" alt="Alternate Text" />
+		</div>
+		<div class="col-xl-5 m-5">
+			<h1 id="id_dev" style="visibility:hidden">@Model.id_dev</h1>
+			<h1>@Model.name_dev</h1>
+			<h3>@Model.cost.ToString("C")</h3>
+			@if (storage.Length != 0)
+			{
+				<select id="SelectStorage" name="SelectStorage" class="form-select w-50 shadow-none">
+					<option value="">Please select storage </option>
+
+					@for (int i = 0; i < storage.Length; i++)
+					{
+						<option value="@storage[i]">@storage[i] </option>
+					}
+				</select>
+			}
+			<a class="btn btn-outline-secondary mt-4"  onclick="buy()">Buy now</a>
+		</div>
+	</div>
+</div>
+
+<script>
+	var value=""
+	$('#SelectStorage').change(() => {
+		value = $('#SelectStorage').val();
+	});
+	function buy() {
+		var i = document.getElementById("id_dev").innerHTML;
+		window.location.href = "/cart/buy/"+i+"?storage=" + value;
+	}
+</script>

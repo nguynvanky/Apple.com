@@ -1,0 +1,74 @@
+﻿@model List<AppleWebsite.Models.Category>
+@{
+	ViewBag.Title = "Store";
+}
+<style>
+	.card {
+		transition: all 0.2s ease-in-out;
+	}
+		.card:hover {
+			transform: scale(1.02);
+			box-shadow: 0px 15px 15px rgb(128, 128, 120);
+		}
+	
+</style>
+<div style="height:560px;" id="carouselControls" class="carousel slide" data-mdb-ride="carousel" data-bs-ride="carousel">
+	<div class="carousel-inner ">
+		<div style="overflow:hidden;" class="carousel-item active ">
+			<img style=" margin:auto; height:560px;" src="~/DeviceAppleImage/banner_ipad.jpg" class="d-block h-100 img-fluid" alt="...">
+			<p class="carousel-caption">iPad</p>
+		</div>
+		<div style="overflow:hidden;" class="carousel-item">
+			<img style="margin:auto; height:560px;" src="~/DeviceAppleImage/banner_iphone.jpg" class="d-block h-100 img-fluid" alt="...">
+			<p class="carousel-caption">iPhone</p>
+
+		</div>
+		<div style="overflow:hidden;" class="carousel-item ">
+			<img style="margin:auto; height:560px;" src="~/DeviceAppleImage/banner_mac.jpg" class="d-block h-100 img-fluid" alt="...">
+			<p class="carousel-caption">Mac</p>
+
+		</div>
+		<div style="overflow: hidden;" class="carousel-item ">
+			<img style=" margin:auto; height:560px;" src="~/DeviceAppleImage/banner_watch.jpg" class="d-block h-100 img-fluid" alt="...">
+		</div>
+		<div style="overflow: hidden;" class="carousel-item ">
+			<img style=" margin:auto; height:560px;" src="~/DeviceAppleImage/banner_iphone2.jpg" class="d-block h-100 img-fluid" alt="...">
+		</div>
+	</div>
+	<button class="carousel-control-prev" type="button" data-bs-target="#carouselControls" data-bs-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Previous</span>
+	</button>
+	<button class="carousel-control-next" type="button" data-bs-target="#carouselControls" data-bs-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Next</span>
+	</button>
+</div>
+<div class="container">
+	@for (int i = 0; i < Model.Count; i++)
+	{
+		<strong><a class="text-decoration-none text-dark text-uppercase " href="~/device/@Model[i].id_cate">@Model[i].name_cate</a></strong>
+		<div class="col ">
+			<div class="row justify-content-evenly">
+				@{ 
+					int k = 0;
+				}
+				@foreach (var item in Model[i].devices)
+				{
+					if(k++==3)
+					{
+						break;
+					}
+					<div class=" card  p-2 mx-auto m-3  col-7 col-md-4 mx-md-2  col-lg-3 mx-lg-2 col-xl-3 mx-xl-4 col-xxl-2 mx-xxl-4" style="">
+						<img class="card-img-top" style="" src="~/DeviceAppleImage/@Model[i].name_cate/@item.img" alt="Alternate Text" />
+						<div class="card-body justify-content-between flex-column d-flex">
+							<h5 class="card-title">@item.name_dev</h5>
+							<p class="card-text">Cost: @item.cost.ToString("C")</p>
+							<a class="card-img-bottom btn btn-outline-secondary" href="~/device/Details/@item.id_dev">Buy</a>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	}
+</div>
