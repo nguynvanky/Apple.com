@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-
+using AppleWebsite.Identity;
 namespace AppleWebsite.Models
 {
 	public class Cart
@@ -14,6 +14,5 @@ namespace AppleWebsite.Models
 		public Nullable<int> quantity { get; set; }
 		public string storage { get; set; }
 		public virtual Device Device { get; set; }
-
 	}
 }

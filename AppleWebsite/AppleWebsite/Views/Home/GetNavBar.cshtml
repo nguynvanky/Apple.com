@@ -22,27 +22,27 @@
 			<div>
 				<ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll justify-content-md-center" style="--bs-scroll-height: 100px;">
 					<li class="nav-item">
-						<a class="nav-link px-3" style="color: #f5f5f7; font-size: 12px;" href="~/category/index">Store</a>
+						@Html.ActionLink("Store", "index", new { controller = "category" }, new { @class = "nav-link px-3", style = "color: #f5f5f7; font-size: 12px;" })
 					</li>
 					@foreach (var item in Model)
 					{
 						<li class="nav-item">
-							<a class="nav-link px-3" style="color: #f5f5f7; font-size: 12px;" href="~/device/index/@item.id_cate">@item.name_cate</a>
+							@Html.ActionLink(item.name_cate, "index", new { id = item.id_cate, controller = "device" }, new { @class = "nav-link px-3", style = "color: #f5f5f7; font-size: 12px;" })
 						</li>
 					}
 					<li class="nav-item">
-				<a class="nav-link px-3" style="color: #f5f5f7; font-size: 12px;" href="~/cart/index"><i class="fa fa-shopping-cart"></i></a>
+						<a class="nav-link px-3" style="color: #f5f5f7; font-size: 12px;" href="~/cart/index"><i class="fa fa-shopping-cart"></i></a>
 					</li>
 				</ul>
 			</div>
 			<div>
-
-				<div class="input-group m-2">
-					<input class="form-control  border-0 shadow-none" type="search" placeholder="search" id="search-input">
-					<a href="#" class="btn btn-outline-secondary bg-white  border-0 " type="button">
+				@using (Html.BeginForm("Search", "Device", FormMethod.Post, new { @class = "input-group m-2" }))
+				{
+					@Html.TextBox("search_name",string.Empty,new {@class= "form-control  border-0 shadow-none",type="search",placeholder="search" })
+					<button class="btn btn-outline-secondary bg-white  border-0 " type="submit">
 						<i class="fa fa-search"></i>
-					</a>
-				</div>
+					</button>
+				}
 			</div>
 
 		</div>

@@ -21,5 +21,21 @@ namespace AppleWebsite.Controllers
            Device device_matched = db.Devices.Where(row => row.id_dev == id).FirstOrDefault();
             return View(device_matched);
         }
+      
+        [HttpPost]
+        public ActionResult Search(string search_name)
+        {
+            AppleDBContext db = new AppleDBContext();
+            List<Device> devices = db.Devices.Where(row =>  row.name_dev.ToLower().Contains(search_name.ToLower())).ToList();
+            if(devices.Count !=0)
+			{
+
+            return View(devices);
+			}
+			{
+                ViewBag.name = search_name;
+                return View("NotFound");
+			}
+        }
     }
 }
