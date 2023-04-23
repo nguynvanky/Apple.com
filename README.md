@@ -1,6 +1,6 @@
 # Apple.com
 Asp.Net
-website bán thiết bị về iphone
+website bán thiết bị thuộc Apple
 Chức năng:
   + Đăng ký/ Đăng nhập
   + Phân quyền admin/user
