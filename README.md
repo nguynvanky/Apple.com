@@ -7,5 +7,5 @@ Chức năng:
   + mở cổng API
   + filter authentication
   + sql server
-  + identity framework
+  + Entity framework
   [MY WEBSITE](http://apple.somee.com/)
